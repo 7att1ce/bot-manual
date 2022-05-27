@@ -135,7 +135,54 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="osu查询功能"><a class="header" href="#osu查询功能">OSU查询功能</a></h1>
-<p>咕咕咕</p>
+<blockquote>
+<p>OSU查询功能的设计之初想要兼容一些目前用的比较多的机器人的命令，比如白菜，猫猫。</p>
+<p>后续可能会更改一些东西，不再保持兼容性。</p>
+<p>OSU!API使用文档：<a href="https://osu.ppy.sh/docs/">https://osu.ppy.sh/docs/</a></p>
+</blockquote>
+<h2 id="绑定osu账户"><a class="header" href="#绑定osu账户">绑定OSU账户</a></h2>
+<p><code>!setid &lt;osu_id&gt;</code></p>
+<p>osu_id为osu账户的用户名。</p>
+<p>在使用一些其他命令时如果没有指定用户名，则会查询社交账号绑定的OSU账户。</p>
+<h2 id="设定默认的游戏模式"><a class="header" href="#设定默认的游戏模式">设定默认的游戏模式</a></h2>
+<p><code>!setmode &lt;mode&gt;</code></p>
+<p>mode为游戏模式的数字，具体情况如下</p>
+<ul>
+<li>0: std模式，戳泡泡模式</li>
+<li>1: taiko模式，太鼓模式</li>
+<li>2: fruits模式，接水果模式</li>
+<li>3: mania模式，下落式</li>
+</ul>
+<p>绑定OSU账户后可以指定查询是默认的游戏模式，如果没有设置则默认为std模式。</p>
+<h2 id="查询账户个人资料"><a class="header" href="#查询账户个人资料">查询账户个人资料</a></h2>
+<p><code>!info[:&lt;mode&gt;]</code></p>
+<p><code>!info &lt;osu_id&gt;[:&lt;mode&gt;]</code></p>
+<p>osu_id，mode含义同上</p>
+<p>mode缺省时默认为std模式或者绑定账户的默认模式</p>
+<p>查询结果以图片的形式返回</p>
+<h2 id="查询最近成绩"><a class="header" href="#查询最近成绩">查询最近成绩</a></h2>
+<p><code>!pr[:&lt;mode&gt;]</code></p>
+<p><code>!pr &lt;osu_id&gt;[:&lt;mode&gt;]</code></p>
+<p>osu_id，mode含义同上</p>
+<p>mode缺省时默认为std模式或者绑定账户的默认模式</p>
+<p>查询结果以图片的形式返回</p>
+<h2 id="查询最近成绩包括未pass成绩"><a class="header" href="#查询最近成绩包括未pass成绩">查询最近成绩（包括未pass成绩）</a></h2>
+<p><code>!recent[:&lt;mode&gt;]</code></p>
+<p><code>!recent &lt;osu_id&gt;[:&lt;mode&gt;]</code></p>
+<p>osu_id，mode含义同上</p>
+<p>mode缺省时默认为std模式或者绑定账户的默认模式</p>
+<p>查询结果以图片的形式返回</p>
+<h2 id="查询指定bid的成绩"><a class="header" href="#查询指定bid的成绩">查询指定bid的成绩</a></h2>
+<p><code>!score &lt;bid&gt;</code></p>
+<p>bid为beatmap id</p>
+<p>只有Rank和Loved谱面支持此功能</p>
+<p>查询结果以图片的形式返回</p>
+<h2 id="查询bp"><a class="header" href="#查询bp">查询bp</a></h2>
+<p><code>!bp[[#&lt;num&gt;]:&lt;mode&gt;]</code></p>
+<p><code>!bp &lt;osu_id&gt;[[#&lt;num&gt;]:&lt;mode&gt;]</code></p>
+<p>osu_id，mode含义同上</p>
+<p>num含义为bp从大到小的排名，缺省为1，即bp榜最高pp的成绩</p>
+<p>查询结果以图片的形式返回</p>
 
                     </main>
 

@@ -180,7 +180,17 @@
 </li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="开发记录"><a class="header" href="#开发记录">开发记录</a></h1>
-<p>咕咕咕</p>
+<p>之前曾经尝试过用Mirai写机器人，不过用的是Python+Mirai HTTP API，写的挺烂的，后续就没怎么管了。</p>
+<p>后来发现可以添加Mirai Core依赖进行java开发，再加上一直想自己写一个OSU查询的机器人，于是又重启项目了。</p>
+<h2 id="202254"><a class="header" href="#202254">2022.5.4</a></h2>
+<p>一开始OSU查询账户个人信息想用Selenuim获取网页截图实现，后来因为在Ubuntu Server上发现页面无法加载完整，且速度奇慢，于是就放弃了。</p>
+<p>与此同时还因为Spring Boot的RestTemplate与Selenium的蜜汁不兼容问题，切换到了WebClient，后来发现Spring官方未来会弃用RestTemplate，因为RestTemplate是阻塞模式，而WebClient支持非阻塞模式，也算因祸得福了（</p>
+<h2 id="2022510"><a class="header" href="#2022510">2022.5.10</a></h2>
+<p>尝试用Graphics2D进行成绩图绘制，虽然写起来很麻烦，不过也算实现了想要的功能，也是目前的实现方法。</p>
+<p>咨询了一下别人，建议使用前端技术进行绘制，以后再说吧（</p>
+<h2 id="2022528"><a class="header" href="#2022528">2022.5.28</a></h2>
+<p>加了个第三方的聊天机器人接口，这样机器人看起来不是很笨了（</p>
+<p>代码写的好烂啊，耦合度还是挺高，还得重构。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="contact"><a class="header" href="#contact">Contact</a></h1>
 <h2 id="github"><a class="header" href="#github">GitHub</a></h2>
 <ul>
@@ -192,9 +202,75 @@
 <li>latt1ce@outlook.com</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="一般功能"><a class="header" href="#一般功能">一般功能</a></h1>
-<p>咕咕咕</p>
+<h2 id="查看使用帮助"><a class="header" href="#查看使用帮助">查看使用帮助</a></h2>
+<p><code>!help</code></p>
+<p>返回本文档的链接</p>
+<h2 id="探测主机是否存活"><a class="header" href="#探测主机是否存活">探测主机是否存活</a></h2>
+<p><code>!ping [&lt;hostname&gt;]</code></p>
+<p>hostname可以是域名，也可以是IP地址，返回“pong”代表主机存活。</p>
+<p>如果无主机名参数，可以探测机器人是否存活，返回“在的喵～”代表存活</p>
+<h2 id="生成随机数"><a class="header" href="#生成随机数">生成随机数</a></h2>
+<p><code>!rand [&lt;num1&gt;] [&lt;num2&gt;]</code></p>
+<p>没有参数则随机生成数字。</p>
+<p>命令只有一个参数（如num1），则生成范围为0～num1的随机数。</p>
+<p>命令有两个参数，则生成范围为num1～num2的随机数。</p>
+<h2 id="解析域名"><a class="header" href="#解析域名">解析域名</a></h2>
+<p><code>!ip &lt;domain_name&gt;</code></p>
+<p>返回域名解析结果</p>
+<h2 id="聊天功能"><a class="header" href="#聊天功能">聊天功能</a></h2>
+<blockquote>
+<p>聊天功能使用的第三方机器人：<a href="http://api.qingyunke.com/">http://api.qingyunke.com/</a></p>
+</blockquote>
+<p>使用聊天功能需要@机器人，先@机器人，然后输入想要交流的信息</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="osu查询功能"><a class="header" href="#osu查询功能">OSU查询功能</a></h1>
-<p>咕咕咕</p>
+<blockquote>
+<p>OSU查询功能的设计之初想要兼容一些目前用的比较多的机器人的命令，比如白菜，猫猫。</p>
+<p>后续可能会更改一些东西，不再保持兼容性。</p>
+<p>OSU!API使用文档：<a href="https://osu.ppy.sh/docs/">https://osu.ppy.sh/docs/</a></p>
+</blockquote>
+<h2 id="绑定osu账户"><a class="header" href="#绑定osu账户">绑定OSU账户</a></h2>
+<p><code>!setid &lt;osu_id&gt;</code></p>
+<p>osu_id为osu账户的用户名。</p>
+<p>在使用一些其他命令时如果没有指定用户名，则会查询社交账号绑定的OSU账户。</p>
+<h2 id="设定默认的游戏模式"><a class="header" href="#设定默认的游戏模式">设定默认的游戏模式</a></h2>
+<p><code>!setmode &lt;mode&gt;</code></p>
+<p>mode为游戏模式的数字，具体情况如下</p>
+<ul>
+<li>0: std模式，戳泡泡模式</li>
+<li>1: taiko模式，太鼓模式</li>
+<li>2: fruits模式，接水果模式</li>
+<li>3: mania模式，下落式</li>
+</ul>
+<p>绑定OSU账户后可以指定查询是默认的游戏模式，如果没有设置则默认为std模式。</p>
+<h2 id="查询账户个人资料"><a class="header" href="#查询账户个人资料">查询账户个人资料</a></h2>
+<p><code>!info[:&lt;mode&gt;]</code></p>
+<p><code>!info &lt;osu_id&gt;[:&lt;mode&gt;]</code></p>
+<p>osu_id，mode含义同上</p>
+<p>mode缺省时默认为std模式或者绑定账户的默认模式</p>
+<p>查询结果以图片的形式返回</p>
+<h2 id="查询最近成绩"><a class="header" href="#查询最近成绩">查询最近成绩</a></h2>
+<p><code>!pr[:&lt;mode&gt;]</code></p>
+<p><code>!pr &lt;osu_id&gt;[:&lt;mode&gt;]</code></p>
+<p>osu_id，mode含义同上</p>
+<p>mode缺省时默认为std模式或者绑定账户的默认模式</p>
+<p>查询结果以图片的形式返回</p>
+<h2 id="查询最近成绩包括未pass成绩"><a class="header" href="#查询最近成绩包括未pass成绩">查询最近成绩（包括未pass成绩）</a></h2>
+<p><code>!recent[:&lt;mode&gt;]</code></p>
+<p><code>!recent &lt;osu_id&gt;[:&lt;mode&gt;]</code></p>
+<p>osu_id，mode含义同上</p>
+<p>mode缺省时默认为std模式或者绑定账户的默认模式</p>
+<p>查询结果以图片的形式返回</p>
+<h2 id="查询指定bid的成绩"><a class="header" href="#查询指定bid的成绩">查询指定bid的成绩</a></h2>
+<p><code>!score &lt;bid&gt;</code></p>
+<p>bid为beatmap id</p>
+<p>只有Rank和Loved谱面支持此功能</p>
+<p>查询结果以图片的形式返回</p>
+<h2 id="查询bp"><a class="header" href="#查询bp">查询bp</a></h2>
+<p><code>!bp[[#&lt;num&gt;]:&lt;mode&gt;]</code></p>
+<p><code>!bp &lt;osu_id&gt;[[#&lt;num&gt;]:&lt;mode&gt;]</code></p>
+<p>osu_id，mode含义同上</p>
+<p>num含义为bp从大到小的排名，缺省为1，即bp榜最高pp的成绩</p>
+<p>查询结果以图片的形式返回</p>
 
                     </main>
 
